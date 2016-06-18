@@ -43,15 +43,22 @@ void Bird::remove_bird(QGraphicsScene *scene,b2World *world)
 
 }
 
-void Bird::delay(int millisecondsToWait)
+// Special Skill
+b2Vec2 Bird::getVelocity()
 {
-    QTime dieTime = QTime::currentTime().addMSecs( millisecondsToWait );
-    while( QTime::currentTime() < dieTime )
-    {
-        QCoreApplication::processEvents( QEventLoop::AllEvents, 100 );
-    }
+    return g_body->GetLinearVelocity();
 }
 
+void Bird::GrowUp(){
+    int x=g_pixmap.x(), y = g_pixmap.y();
+    for(int i=0;i<20;i++){
+       g_pixmap.setPixmap(QPixmap(":/black.png").scaled(x+0.5*i,y+0.5*i));
+    }
+    g_pixmap.setPixmap(QPixmap(":/black.png").scaled(x,y));
+
+}
+
+//
 void Bird::setLinearVelocity(b2Vec2 velocity)
 {
     g_body->SetLinearVelocity(velocity);

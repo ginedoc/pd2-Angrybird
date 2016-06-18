@@ -3,10 +3,11 @@
 
 #include <gameitem.h>
 #include <bird.h>
+#include <egg.h>
 
 #include <QTime>
 #include <QCoreApplication>
-
+#include <cmath>
 class White_Bird:
         public GameItem,public Bird
 {

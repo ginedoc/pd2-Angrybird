@@ -11,6 +11,7 @@
 #include <QTime>
 #include <QApplication>
 
+
 #define BIRD 0
 #define ENEMY 1
 #define LAND 2
@@ -29,6 +30,7 @@ public:
     void set_boundingType(int type);
     int get_BoundingType();
     void collid_handle();
+    void delay(int millisecondsToWait);
 
 
 public slots:

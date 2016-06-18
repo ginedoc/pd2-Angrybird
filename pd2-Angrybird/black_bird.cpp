@@ -9,11 +9,6 @@ Black_Bird::Black_Bird(float bird_x, float bird_y, float radius, QTimer *timer, 
 
 void Black_Bird::Sskill()
 {
-
-//    g_body->ResetMassData();
-    delay(1500);
-    setLinearVelocity(b2Vec2(10,10));
-    delay(300);
-    setLinearVelocity(b2Vec2(0,-20));
+    GrowUp();
 }
 

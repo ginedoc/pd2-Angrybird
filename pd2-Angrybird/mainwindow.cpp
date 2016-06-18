@@ -58,6 +58,8 @@ void MainWindow::showEvent(QShowEvent *)
     GameItem::setGlobalSize(QSizeF(40,30),QSizeF(800,600));
     // Create Ground
     itemlist.push_back(new Land(QPixmap(":/GROUND.png").scaled(800,100),world,scene));
+    // Create Wall
+    itemlist.push_back(new WALL(48,10,30,&timer,world,scene));
     // Create Enemy
     itemlist.push_back(new Enemy(32.0f,10.0f,1.25f,&timer,QPixmap(":/enemy1.png").scaled(45,45),world,scene));
     itemlist.push_back(new Enemy(27.8f,10.0f,1.25f,&timer,QPixmap(":/enemy1.png").scaled(45,45),world,scene));
@@ -118,22 +120,33 @@ bool MainWindow::eventFilter(QObject *, QEvent *event)
     }
     if(event->type() == QEvent::MouseButtonRelease)
     {
+        qDebug() << temp;
+
+        if(temp == 3){
+            if(bird_turn != 0){
+                birdie->Sskill();
+                temp++;
+                bird_turn++;
+            }
+        }
+        if(bird_turn == 0 && temp == 2 ){
+            temp = 0;
+            bird_turn++;
+        }
+        if((bird_turn != 0) && (temp == 2))  temp++;
+
         if(abs(ps.x()-SlingX)<Sling_Radius && abs(ps.y()-SlingY)< Sling_Radius){
             angleX = Record_po.x() / sqrt(pow(Record_po.x(),2)+pow(Record_po.y(),2));
             angleY = Record_po.y() / sqrt(pow(Record_po.x(),2)+pow(Record_po.y(),2));
 
-            if(temp == 0 || temp == 1){
-                temp++;
-            }
-            if(temp == 2){
-                qDebug() << bird_turn;
+            if(temp == 1){
+
                 switch(bird_turn){
                 case RED_BIRD:
                 {
                     birdie = new Red_Bird(ps.x()/20,(600-ps.y())/20,1.0f,&timer,QPixmap(":/red.png").scaled(40,40),world,scene);
                     birdie->setLinearVelocity(b2Vec2(-velocity*angleX,velocity*angleY));
 
-                    birdie->Sskill();
                     birdlist.push_back(birdie);
 
                     break;
@@ -142,7 +155,7 @@ bool MainWindow::eventFilter(QObject *, QEvent *event)
                 {
                     birdie = new Yellow_Bird(ps.x()/20,(600-ps.y())/20,1.0f,&timer,QPixmap(":/Yellow.png").scaled(40,40),world,scene);
                     birdie->setLinearVelocity(b2Vec2(-velocity*angleX,velocity*angleY));
-                    birdie->Sskill();
+//                    qDebug() <<  birdie->getPosition();
                     birdlist.push_back(birdie);
 
                     break;
@@ -151,7 +164,6 @@ bool MainWindow::eventFilter(QObject *, QEvent *event)
                 {
                     birdie = new Black_Bird(ps.x()/20,(600-ps.y())/20,1.0f,&timer,QPixmap(":/black.png").scaled(40,40),world,scene);
                     birdie->setLinearVelocity(b2Vec2(-velocity*angleX,velocity*angleY));
-                    birdie->Sskill();
                     birdlist.push_back(birdie);
                     break;
                 }
@@ -159,17 +171,16 @@ bool MainWindow::eventFilter(QObject *, QEvent *event)
                 {
                     birdie = new White_Bird(ps.x()/20,(600-ps.y())/20,1.0f,&timer,QPixmap(":/white.png").scaled(40,40),world,scene);
                     birdie->setLinearVelocity(b2Vec2(-velocity*angleX,velocity*angleY));
-                    birdie->Sskill();
                     birdlist.push_back(birdie);
                     break;
                 }
                 }
-
-                temp = 0;
-                bird_turn++;
+                temp++;
 //                birdie->remove_bird(scene,world);
             }
+            if(temp == 0) temp++;
         }
+
         if(bird_turn > 4){
             bird_turn -=1;
             qDebug() << "EXIT";
@@ -178,6 +189,7 @@ bool MainWindow::eventFilter(QObject *, QEvent *event)
         // std::cout << "Release !" << std::endl ;
     }
 
+    if(temp == 4) temp = 0;
     return false;
 }
 
@@ -207,6 +219,7 @@ void MainWindow::win()
 
 void MainWindow::QUITSLOT()
 {
+    close();
     std::cout << "QUIT GAME SIGNAL RECEIVE ! " << std::endl;
 }
 

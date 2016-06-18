@@ -1,16 +1,16 @@
-#include "sling.h"
+#include "wall.h"
 
-Sling::Sling(b2World *world, QGraphicsScene *scene):
-    GameItem(world),x(7.5),y(4.0),w(0.5),h(4)
+WALL::WALL(float x, float y, float length, QTimer *timer, b2World *world, QGraphicsScene *scene):
+    GameItem(world)
 {
+
     b2BodyDef bodyDef;
     bodyDef.userData = this;
     bodyDef.position.Set(x,y);
     g_body = world->CreateBody(&bodyDef);
     b2PolygonShape bodyBox;
-    bodyBox.SetAsBox(w/2,h/2);
+    bodyBox.SetAsBox(length/30,length);
     g_body->CreateFixture(&bodyBox,9.0f);
-
 
     paint();
 }

@@ -20,7 +20,9 @@ public:
     Bird(float bird_x, float bird_y, float radius, QTimer *timer, QPixmap pixmap, b2World *world, QGraphicsScene *scene);
     void remove_bird(QGraphicsScene *scene, b2World *world);
     void setLinearVelocity(b2Vec2 velocity);
-    void delay(int);
+
+    b2Vec2 getVelocity();
+    void GrowUp();
     virtual void Sskill()  = 0;
 private:
     QPointF bird_pos();

@@ -37,7 +37,14 @@ int GameItem::get_BoundingType()
     if(bounding_type == BARRIER)    return BARRIER;
 }
 
-
+void GameItem::delay(int millisecondsToWait)
+{
+    QTime dieTime = QTime::currentTime().addMSecs( millisecondsToWait );
+    while( QTime::currentTime() < dieTime )
+    {
+        QCoreApplication::processEvents( QEventLoop::AllEvents, 100 );
+    }
+}
 
 void GameItem::collid_handle()
 {

@@ -24,6 +24,7 @@
 #include "genbird.h"
 #include "black_bird.h"
 #include "white_bird.h"
+#include "wall.h"
 
 namespace Ui {
 class MainWindow;
