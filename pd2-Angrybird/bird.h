@@ -7,6 +7,7 @@
 #include <QTimer>
 #include <QTime>
 #include <QCoreApplication>
+#include <birdcontact.h>
 
 #define BIRD_DENSITY 10.0f
 #define BIRD_FRICTION 0.2f
@@ -17,10 +18,12 @@ class Bird: public GameItem
 {
 public:
     Bird(float bird_x, float bird_y, float radius, QTimer *timer, QPixmap pixmap, b2World *world, QGraphicsScene *scene);
-    void remove_bird(QGraphicsScene *scene);
+    void remove_bird(QGraphicsScene *scene, b2World *world);
     void setLinearVelocity(b2Vec2 velocity);
-//    virtual void collide();
-//    virtual void Sskill() const = 0;
+    void delay(int);
+    virtual void Sskill()  = 0;
+private:
+    QPointF bird_pos();
 };
 
 #endif // BIRD_H

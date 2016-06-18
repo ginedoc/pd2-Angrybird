@@ -37,9 +37,11 @@ int GameItem::get_BoundingType()
     if(bounding_type == BARRIER)    return BARRIER;
 }
 
-void GameItem::collid_handle(int type)
-{
 
+
+void GameItem::collid_handle()
+{
+    deleteLater();
 }
 
 

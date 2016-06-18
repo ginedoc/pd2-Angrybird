@@ -13,8 +13,9 @@ class ContactListener:
 {
 public:
     void BeginContact(b2Contact *contact);
-//    void EndContact(b2Contact *contact);
+    void EndContact(b2Contact *contact);
 private:
+    int type;
     int type1, type2;
 };
 

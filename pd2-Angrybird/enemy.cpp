@@ -32,10 +32,6 @@ Enemy::Enemy(float x, float y,float radius,QTimer *timer, QPixmap pixmap, b2Worl
     g_body->SetAngularDamping(3);
     g_body->CreateFixture(&fixturedef);
 
-
-    // Listen to Bound
-//    BeginContact(Eptr,scene);
-
     // Bound timer
     connect(timer, SIGNAL(timeout()), this,SLOT(paint()));
 
@@ -43,8 +39,3 @@ Enemy::Enemy(float x, float y,float radius,QTimer *timer, QPixmap pixmap, b2Worl
 
 
 }
-//void Enemy::BeginContact(b2Contact *contact,QGraphicsScene *scene){
-//    scene->removeItem(&g_pixmap);
-//    this->destroyed();
-//    qDebug() << "contact";
-//}

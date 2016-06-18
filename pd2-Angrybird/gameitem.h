@@ -8,6 +8,13 @@
 #include <QTransform>
 #include <QtMath>
 #include <QDebug>
+#include <QTime>
+#include <QApplication>
+
+#define BIRD 0
+#define ENEMY 1
+#define LAND 2
+#define BARRIER 3
 
 
 class GameItem : public QObject
@@ -21,7 +28,8 @@ public:
 
     void set_boundingType(int type);
     int get_BoundingType();
-    void collid_handle(int type);
+    void collid_handle();
+
 
 public slots:
     void paint();

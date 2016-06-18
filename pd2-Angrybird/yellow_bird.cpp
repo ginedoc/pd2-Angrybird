@@ -6,3 +6,10 @@ Yellow_Bird::Yellow_Bird(float bird_x, float bird_y, float radius, QTimer *timer
 {
 
 }
+
+
+void Yellow_Bird::Sskill()
+{
+    delay(1500);
+    setLinearVelocity(b2Vec2(20,-15));
+}

@@ -22,7 +22,9 @@ SOURCES += main.cpp\
     sling.cpp \
     red_bird.cpp \
     yellow_bird.cpp \
-    contactlistener.cpp
+    contactlistener.cpp \
+    black_bird.cpp \
+    white_bird.cpp
 
 HEADERS  += mainwindow.h \
     land.h \
@@ -73,7 +75,9 @@ HEADERS  += mainwindow.h \
     sling.h \
     red_bird.h \
     yellow_bird.h \
-    contactlistener.h
+    contactlistener.h \
+    black_bird.h \
+    white_bird.h
 
 FORMS    += mainwindow.ui
 

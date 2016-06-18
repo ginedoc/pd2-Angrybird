@@ -7,5 +7,10 @@
         <file>wood1.png</file>
         <file>wood2.png</file>
         <file>Yellow.png</file>
+        <file>QUIT.png</file>
+        <file>red.png</file>
+        <file>black.png</file>
+        <file>white.png</file>
+        <file>RESTART.png</file>
     </qresource>
 </RCC>

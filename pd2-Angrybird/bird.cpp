@@ -17,6 +17,7 @@ Bird::Bird(float bird_x, float bird_y, float radius, QTimer *timer, QPixmap pixm
     bodydef.bullet = true;
     bodydef.position.Set(bird_x,bird_y);
     bodydef.userData = this;
+    bodydef.allowSleep = true;
     g_body = world->CreateBody(&bodydef);
     b2CircleShape bodyshape;
     bodyshape.m_radius = radius;
@@ -29,8 +30,6 @@ Bird::Bird(float bird_x, float bird_y, float radius, QTimer *timer, QPixmap pixm
     g_body->CreateFixture(&fixturedef);
 
 
-
-
     // Bound timer
     connect(timer, SIGNAL(timeout()), this,SLOT(paint()));
 
@@ -38,14 +37,33 @@ Bird::Bird(float bird_x, float bird_y, float radius, QTimer *timer, QPixmap pixm
 
 }
 
-void Bird::remove_bird(QGraphicsScene *scene)
+void Bird::remove_bird(QGraphicsScene *scene,b2World *world)
 {
-       scene->removeItem(&g_pixmap);
-       this->destroyed();
+    delay(5000);
+
 }
 
+void Bird::delay(int millisecondsToWait)
+{
+    QTime dieTime = QTime::currentTime().addMSecs( millisecondsToWait );
+    while( QTime::currentTime() < dieTime )
+    {
+        QCoreApplication::processEvents( QEventLoop::AllEvents, 100 );
+    }
+}
 
 void Bird::setLinearVelocity(b2Vec2 velocity)
 {
     g_body->SetLinearVelocity(velocity);
+}
+
+QPointF Bird::bird_pos()
+{
+    b2Vec2 pos = g_body->GetPosition();
+    //std::cout << g_body->GetAngle() << std::endl;
+    QPointF mappedPoint;
+    mappedPoint.setX(((pos.x-g_size.width()/2) * g_windowsize.width())/g_worldsize.width());
+    mappedPoint.setY((1.0f - (pos.y+g_size.height()/2)/g_worldsize.height()) * g_windowsize.height());
+
+    return mappedPoint;
 }

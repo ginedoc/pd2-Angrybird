@@ -10,7 +10,7 @@ class Yellow_Bird:
 {
 public:
     Yellow_Bird(float bird_x, float bird_y, float radius, QTimer *timer, QPixmap pixmap, b2World *world, QGraphicsScene *scene);
-//    virtual void Sskill();
+    virtual void Sskill();
 
 };
 

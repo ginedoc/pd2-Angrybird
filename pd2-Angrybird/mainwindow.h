@@ -9,6 +9,8 @@
 #include <Box2D/Box2D.h>
 #include <QMouseEvent>
 #include <iostream>
+#include <QPushButton>
+#include <QLabel>
 
 
 #include <contactlistener.h>
@@ -20,6 +22,8 @@
 #include "barrier.h"
 #include "sling.h"
 #include "genbird.h"
+#include "black_bird.h"
+#include "white_bird.h"
 
 namespace Ui {
 class MainWindow;
@@ -35,18 +39,24 @@ public:
     void showEvent(QShowEvent *);
     bool eventFilter(QObject *, QEvent *event);
     void closeEvent(QCloseEvent *);
+    void ToWin();
+    void delay(int);
 signals:
     //closing the game
     void quitGame();
+    void winGame();
 private slots:
     void tick();
-    //debug slot
+    void win();
+    void restart();
     void QUITSLOT();
+
 private:
     Ui::MainWindow *ui;
     QGraphicsScene * scene;
     b2World * world;
     QList<GameItem *> itemlist;
+    QList<GameItem *> birdlist;
     QTimer timer;
 
     // Value of Sling
@@ -63,6 +73,8 @@ private:
 
     // in Game
     Bird * birdie;
+    QPushButton *quit_button;
+    QPushButton *restart_button;
 };
 
 #endif // MAINWINDOW_H
