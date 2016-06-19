@@ -58,6 +58,10 @@ void Bird::GrowUp(){
 
 }
 
+void Bird::Egg(){
+    g_pixmap.setPixmap(QPixmap(":/egg.png").scaled(40,40));
+}
+
 //
 void Bird::setLinearVelocity(b2Vec2 velocity)
 {

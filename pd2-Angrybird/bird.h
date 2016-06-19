@@ -22,6 +22,7 @@ public:
     void setLinearVelocity(b2Vec2 velocity);
 
     b2Vec2 getVelocity();
+    void Egg();
     void GrowUp();
     virtual void Sskill()  = 0;
 private:

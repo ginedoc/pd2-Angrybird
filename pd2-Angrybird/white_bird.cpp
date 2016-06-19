@@ -8,9 +8,7 @@ White_Bird::White_Bird(float bird_x, float bird_y, float radius, QTimer *timer, 
 
 void White_Bird::Sskill()
 {
-    b2Vec2 v = getVelocity();
-    for(int i=0;i<200;i++){
-        setLinearVelocity(b2Vec2(0,-10));
-        v = getVelocity();
-    }
+
+    setLinearVelocity(b2Vec2(0,-10));
+    Egg();
 }

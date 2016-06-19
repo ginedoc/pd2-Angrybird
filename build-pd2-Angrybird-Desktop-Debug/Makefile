@@ -60,7 +60,8 @@ SOURCES       = ../pd2-Angrybird/main.cpp \
 		../pd2-Angrybird/yellow_bird.cpp \
 		../pd2-Angrybird/contactlistener.cpp \
 		../pd2-Angrybird/black_bird.cpp \
-		../pd2-Angrybird/white_bird.cpp qrc_pic.cpp \
+		../pd2-Angrybird/white_bird.cpp \
+		../pd2-Angrybird/wall.cpp qrc_pic.cpp \
 		moc_mainwindow.cpp \
 		moc_gameitem.cpp
 OBJECTS       = main.o \
@@ -76,6 +77,7 @@ OBJECTS       = main.o \
 		contactlistener.o \
 		black_bird.o \
 		white_bird.o \
+		wall.o \
 		qrc_pic.o \
 		moc_mainwindow.o \
 		moc_gameitem.o
@@ -270,7 +272,8 @@ DIST          = ../Box2D_v2.1.2/Box2D/Box2D/CMakeLists.txt \
 		../pd2-Angrybird/yellow_bird.h \
 		../pd2-Angrybird/contactlistener.h \
 		../pd2-Angrybird/black_bird.h \
-		../pd2-Angrybird/white_bird.h ../pd2-Angrybird/main.cpp \
+		../pd2-Angrybird/white_bird.h \
+		../pd2-Angrybird/wall.h ../pd2-Angrybird/main.cpp \
 		../pd2-Angrybird/mainwindow.cpp \
 		../pd2-Angrybird/gameitem.cpp \
 		../pd2-Angrybird/bird.cpp \
@@ -282,7 +285,8 @@ DIST          = ../Box2D_v2.1.2/Box2D/Box2D/CMakeLists.txt \
 		../pd2-Angrybird/yellow_bird.cpp \
 		../pd2-Angrybird/contactlistener.cpp \
 		../pd2-Angrybird/black_bird.cpp \
-		../pd2-Angrybird/white_bird.cpp
+		../pd2-Angrybird/white_bird.cpp \
+		../pd2-Angrybird/wall.cpp
 QMAKE_TARGET  = pd2-Angrybird
 DESTDIR       = 
 TARGET        = pd2-Angrybird
@@ -598,8 +602,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents ../Pic/pic.qrc $(DISTDIR)/
-	$(COPY_FILE) --parents ../pd2-Angrybird/mainwindow.h ../pd2-Angrybird/land.h ../Box2D/Box2D/Box2D.h ../Box2D/Box2D/Collision/Shapes/b2ChainShape.h ../Box2D/Box2D/Collision/Shapes/b2CircleShape.h ../Box2D/Box2D/Collision/Shapes/b2EdgeShape.h ../Box2D/Box2D/Collision/Shapes/b2PolygonShape.h ../Box2D/Box2D/Collision/Shapes/b2Shape.h ../Box2D/Box2D/Dynamics/Contacts/b2ChainAndCircleContact.h ../Box2D/Box2D/Dynamics/Contacts/b2ChainAndPolygonContact.h ../Box2D/Box2D/Dynamics/Contacts/b2CircleContact.h ../Box2D/Box2D/Dynamics/Contacts/b2Contact.h ../Box2D/Box2D/Dynamics/Contacts/b2ContactSolver.h ../Box2D/Box2D/Dynamics/Contacts/b2EdgeAndCircleContact.h ../Box2D/Box2D/Dynamics/Contacts/b2EdgeAndPolygonContact.h ../Box2D/Box2D/Dynamics/Contacts/b2PolygonAndCircleContact.h ../Box2D/Box2D/Dynamics/Contacts/b2PolygonContact.h ../Box2D/Box2D/Collision/b2BroadPhase.h ../Box2D/Box2D/Collision/b2Collision.h ../Box2D/Box2D/Collision/b2Distance.h ../Box2D/Box2D/Collision/b2DynamicTree.h ../Box2D/Box2D/Collision/b2TimeOfImpact.h ../Box2D/Box2D/Dynamics/b2Body.h ../Box2D/Box2D/Dynamics/b2ContactManager.h ../Box2D/Box2D/Dynamics/b2Fixture.h ../Box2D/Box2D/Dynamics/b2Island.h ../Box2D/Box2D/Dynamics/b2TimeStep.h ../Box2D/Box2D/Dynamics/b2World.h ../Box2D/Box2D/Dynamics/b2WorldCallbacks.h ../Box2D/Box2D/Dynamics/Joints/b2DistanceJoint.h ../Box2D/Box2D/Dynamics/Joints/b2FrictionJoint.h ../Box2D/Box2D/Dynamics/Joints/b2GearJoint.h ../Box2D/Box2D/Dynamics/Joints/b2Joint.h ../Box2D/Box2D/Dynamics/Joints/b2MotorJoint.h ../Box2D/Box2D/Dynamics/Joints/b2MouseJoint.h ../Box2D/Box2D/Dynamics/Joints/b2PrismaticJoint.h ../Box2D/Box2D/Dynamics/Joints/b2PulleyJoint.h ../Box2D/Box2D/Dynamics/Joints/b2RevoluteJoint.h ../Box2D/Box2D/Dynamics/Joints/b2RopeJoint.h ../Box2D/Box2D/Dynamics/Joints/b2WeldJoint.h ../Box2D/Box2D/Dynamics/Joints/b2WheelJoint.h ../Box2D/Box2D/Rope/b2Rope.h ../pd2-Angrybird/bird.h ../pd2-Angrybird/gameitem.h ../pd2-Angrybird/enemy.h ../pd2-Angrybird/barrier.h ../pd2-Angrybird/sling.h ../pd2-Angrybird/red_bird.h ../pd2-Angrybird/yellow_bird.h ../pd2-Angrybird/contactlistener.h ../pd2-Angrybird/black_bird.h ../pd2-Angrybird/white_bird.h $(DISTDIR)/
-	$(COPY_FILE) --parents ../pd2-Angrybird/main.cpp ../pd2-Angrybird/mainwindow.cpp ../pd2-Angrybird/gameitem.cpp ../pd2-Angrybird/bird.cpp ../pd2-Angrybird/land.cpp ../pd2-Angrybird/enemy.cpp ../pd2-Angrybird/barrier.cpp ../pd2-Angrybird/sling.cpp ../pd2-Angrybird/red_bird.cpp ../pd2-Angrybird/yellow_bird.cpp ../pd2-Angrybird/contactlistener.cpp ../pd2-Angrybird/black_bird.cpp ../pd2-Angrybird/white_bird.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents ../pd2-Angrybird/mainwindow.h ../pd2-Angrybird/land.h ../Box2D/Box2D/Box2D.h ../Box2D/Box2D/Collision/Shapes/b2ChainShape.h ../Box2D/Box2D/Collision/Shapes/b2CircleShape.h ../Box2D/Box2D/Collision/Shapes/b2EdgeShape.h ../Box2D/Box2D/Collision/Shapes/b2PolygonShape.h ../Box2D/Box2D/Collision/Shapes/b2Shape.h ../Box2D/Box2D/Dynamics/Contacts/b2ChainAndCircleContact.h ../Box2D/Box2D/Dynamics/Contacts/b2ChainAndPolygonContact.h ../Box2D/Box2D/Dynamics/Contacts/b2CircleContact.h ../Box2D/Box2D/Dynamics/Contacts/b2Contact.h ../Box2D/Box2D/Dynamics/Contacts/b2ContactSolver.h ../Box2D/Box2D/Dynamics/Contacts/b2EdgeAndCircleContact.h ../Box2D/Box2D/Dynamics/Contacts/b2EdgeAndPolygonContact.h ../Box2D/Box2D/Dynamics/Contacts/b2PolygonAndCircleContact.h ../Box2D/Box2D/Dynamics/Contacts/b2PolygonContact.h ../Box2D/Box2D/Collision/b2BroadPhase.h ../Box2D/Box2D/Collision/b2Collision.h ../Box2D/Box2D/Collision/b2Distance.h ../Box2D/Box2D/Collision/b2DynamicTree.h ../Box2D/Box2D/Collision/b2TimeOfImpact.h ../Box2D/Box2D/Dynamics/b2Body.h ../Box2D/Box2D/Dynamics/b2ContactManager.h ../Box2D/Box2D/Dynamics/b2Fixture.h ../Box2D/Box2D/Dynamics/b2Island.h ../Box2D/Box2D/Dynamics/b2TimeStep.h ../Box2D/Box2D/Dynamics/b2World.h ../Box2D/Box2D/Dynamics/b2WorldCallbacks.h ../Box2D/Box2D/Dynamics/Joints/b2DistanceJoint.h ../Box2D/Box2D/Dynamics/Joints/b2FrictionJoint.h ../Box2D/Box2D/Dynamics/Joints/b2GearJoint.h ../Box2D/Box2D/Dynamics/Joints/b2Joint.h ../Box2D/Box2D/Dynamics/Joints/b2MotorJoint.h ../Box2D/Box2D/Dynamics/Joints/b2MouseJoint.h ../Box2D/Box2D/Dynamics/Joints/b2PrismaticJoint.h ../Box2D/Box2D/Dynamics/Joints/b2PulleyJoint.h ../Box2D/Box2D/Dynamics/Joints/b2RevoluteJoint.h ../Box2D/Box2D/Dynamics/Joints/b2RopeJoint.h ../Box2D/Box2D/Dynamics/Joints/b2WeldJoint.h ../Box2D/Box2D/Dynamics/Joints/b2WheelJoint.h ../Box2D/Box2D/Rope/b2Rope.h ../pd2-Angrybird/bird.h ../pd2-Angrybird/gameitem.h ../pd2-Angrybird/enemy.h ../pd2-Angrybird/barrier.h ../pd2-Angrybird/sling.h ../pd2-Angrybird/red_bird.h ../pd2-Angrybird/yellow_bird.h ../pd2-Angrybird/contactlistener.h ../pd2-Angrybird/black_bird.h ../pd2-Angrybird/white_bird.h ../pd2-Angrybird/wall.h $(DISTDIR)/
+	$(COPY_FILE) --parents ../pd2-Angrybird/main.cpp ../pd2-Angrybird/mainwindow.cpp ../pd2-Angrybird/gameitem.cpp ../pd2-Angrybird/bird.cpp ../pd2-Angrybird/land.cpp ../pd2-Angrybird/enemy.cpp ../pd2-Angrybird/barrier.cpp ../pd2-Angrybird/sling.cpp ../pd2-Angrybird/red_bird.cpp ../pd2-Angrybird/yellow_bird.cpp ../pd2-Angrybird/contactlistener.cpp ../pd2-Angrybird/black_bird.cpp ../pd2-Angrybird/white_bird.cpp ../pd2-Angrybird/wall.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ../pd2-Angrybird/mainwindow.ui $(DISTDIR)/
 
 
@@ -626,6 +630,7 @@ compiler_rcc_clean:
 	-$(DEL_FILE) qrc_pic.cpp
 qrc_pic.cpp: ../Pic/pic.qrc \
 		../Pic/enemy1.png \
+		../Pic/egg.png \
 		../Pic/background.png \
 		../Pic/Yellow.png \
 		../Pic/Normal_Bird_1.png \
@@ -655,6 +660,8 @@ moc_mainwindow.cpp: ../pd2-Angrybird/contactlistener.h \
 		../pd2-Angrybird/red_bird.h \
 		../pd2-Angrybird/black_bird.h \
 		../pd2-Angrybird/white_bird.h \
+		../pd2-Angrybird/egg.h \
+		../pd2-Angrybird/wall.h \
 		../pd2-Angrybird/mainwindow.h
 	/usr/lib/qt/bin/moc $(DEFINES) -I/usr/lib/qt/mkspecs/linux-g++ -I'/home/powang/ncku 2016 spring/pd2/pd2-Angrybird/pd2-Angrybird' -I/usr/include/qt -I/usr/include/qt/QtWidgets -I/usr/include/qt/QtGui -I/usr/include/qt/QtCore -I. -I/usr/include/c++/6.1.1 -I/usr/include/c++/6.1.1/x86_64-pc-linux-gnu -I/usr/include/c++/6.1.1/backward -I/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/include -I/usr/local/include -I/usr/lib/gcc/x86_64-pc-linux-gnu/6.1.1/include-fixed -I/usr/include ../pd2-Angrybird/mainwindow.h -o moc_mainwindow.cpp
 
@@ -692,7 +699,9 @@ main.o: ../pd2-Angrybird/main.cpp ../pd2-Angrybird/mainwindow.h \
 		../pd2-Angrybird/genbird.h \
 		../pd2-Angrybird/red_bird.h \
 		../pd2-Angrybird/black_bird.h \
-		../pd2-Angrybird/white_bird.h
+		../pd2-Angrybird/white_bird.h \
+		../pd2-Angrybird/egg.h \
+		../pd2-Angrybird/wall.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o ../pd2-Angrybird/main.cpp
 
 mainwindow.o: ../pd2-Angrybird/mainwindow.cpp ../pd2-Angrybird/mainwindow.h \
@@ -709,6 +718,8 @@ mainwindow.o: ../pd2-Angrybird/mainwindow.cpp ../pd2-Angrybird/mainwindow.h \
 		../pd2-Angrybird/red_bird.h \
 		../pd2-Angrybird/black_bird.h \
 		../pd2-Angrybird/white_bird.h \
+		../pd2-Angrybird/egg.h \
+		../pd2-Angrybird/wall.h \
 		ui_mainwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o mainwindow.o ../pd2-Angrybird/mainwindow.cpp
 
@@ -717,8 +728,7 @@ gameitem.o: ../pd2-Angrybird/gameitem.cpp ../pd2-Angrybird/gameitem.h
 
 bird.o: ../pd2-Angrybird/bird.cpp ../pd2-Angrybird/bird.h \
 		../pd2-Angrybird/gameitem.h \
-		../pd2-Angrybird/birdcontact.h \
-		../pd2-Angrybird/enemy.h
+		../pd2-Angrybird/birdcontact.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o bird.o ../pd2-Angrybird/bird.cpp
 
 land.o: ../pd2-Angrybird/land.cpp ../pd2-Angrybird/land.h \
@@ -740,15 +750,13 @@ sling.o: ../pd2-Angrybird/sling.cpp ../pd2-Angrybird/sling.h \
 red_bird.o: ../pd2-Angrybird/red_bird.cpp ../pd2-Angrybird/red_bird.h \
 		../pd2-Angrybird/bird.h \
 		../pd2-Angrybird/gameitem.h \
-		../pd2-Angrybird/birdcontact.h \
-		../pd2-Angrybird/enemy.h
+		../pd2-Angrybird/birdcontact.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o red_bird.o ../pd2-Angrybird/red_bird.cpp
 
 yellow_bird.o: ../pd2-Angrybird/yellow_bird.cpp ../pd2-Angrybird/yellow_bird.h \
 		../pd2-Angrybird/bird.h \
 		../pd2-Angrybird/gameitem.h \
-		../pd2-Angrybird/birdcontact.h \
-		../pd2-Angrybird/enemy.h
+		../pd2-Angrybird/birdcontact.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o yellow_bird.o ../pd2-Angrybird/yellow_bird.cpp
 
 contactlistener.o: ../pd2-Angrybird/contactlistener.cpp ../pd2-Angrybird/contactlistener.h \
@@ -761,16 +769,19 @@ contactlistener.o: ../pd2-Angrybird/contactlistener.cpp ../pd2-Angrybird/contact
 black_bird.o: ../pd2-Angrybird/black_bird.cpp ../pd2-Angrybird/black_bird.h \
 		../pd2-Angrybird/gameitem.h \
 		../pd2-Angrybird/bird.h \
-		../pd2-Angrybird/birdcontact.h \
-		../pd2-Angrybird/enemy.h
+		../pd2-Angrybird/birdcontact.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o black_bird.o ../pd2-Angrybird/black_bird.cpp
 
 white_bird.o: ../pd2-Angrybird/white_bird.cpp ../pd2-Angrybird/white_bird.h \
 		../pd2-Angrybird/gameitem.h \
 		../pd2-Angrybird/bird.h \
 		../pd2-Angrybird/birdcontact.h \
-		../pd2-Angrybird/enemy.h
+		../pd2-Angrybird/egg.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o white_bird.o ../pd2-Angrybird/white_bird.cpp
+
+wall.o: ../pd2-Angrybird/wall.cpp ../pd2-Angrybird/wall.h \
+		../pd2-Angrybird/gameitem.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o wall.o ../pd2-Angrybird/wall.cpp
 
 qrc_pic.o: qrc_pic.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o qrc_pic.o qrc_pic.cpp
