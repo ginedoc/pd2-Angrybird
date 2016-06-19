@@ -12,5 +12,6 @@
         <file>black.png</file>
         <file>white.png</file>
         <file>RESTART.png</file>
+        <file>egg.png</file>
     </qresource>
 </RCC>
